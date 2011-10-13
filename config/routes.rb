@@ -1,4 +1,7 @@
 MaquetteCreatePostAsGuestOrUserWithAjax::Application.routes.draw do
+  # match 'comments/show_comment_guest_fields' => 'comments#show_comment_guest_fields'
+  post "comments/show_comment_guest_fields"
+  get "comments/show_comment_guest_fields"
   resources :comments
 
   devise_for :users

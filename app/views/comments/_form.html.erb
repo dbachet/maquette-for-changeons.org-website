@@ -27,10 +27,10 @@
 		Envoyer en tant que &nbsp; <span class="plus">></span>
 		<ul class="sub-menu">
 			<li>
-				Utilisateur enregistré
+				<%= link_to "Utilisateur enregistré", "#" %>
 			</li>
 			<li>
-				Invité
+				<%= link_to "Invité", comments_show_comment_guest_fields_path, :remote => true %>
 			</li>
 		</ul>
 	</div>

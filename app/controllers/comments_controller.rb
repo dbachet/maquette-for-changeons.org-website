@@ -1,6 +1,14 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :only => :create
   
+  def show_comment_guest_fields
+    @js_disabled_msg = "The guest posting is not authorized without javascript."
+    respond_to do |format|
+      format.html { render 'errors/javascript_disabled' }
+      format.js
+    end
+  end
+  
   # GET /comments
   # GET /comments.xml
   def index
