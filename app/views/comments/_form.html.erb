@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+
+
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -21,5 +23,20 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+	<div class="drop-menu">
+		Envoyer en tant que &nbsp; <span class="plus">></span>
+		<ul class="sub-menu">
+			<li>
+				Utilisateur enregistré
+			</li>
+			<li>
+				Invité
+			</li>
+		</ul>
+	</div>
   </div>
+
+	
+	
 <% end %>
+
