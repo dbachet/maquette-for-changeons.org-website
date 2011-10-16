@@ -4,7 +4,9 @@ MaquetteCreatePostAsGuestOrUserWithAjax::Application.routes.draw do
   get "comments/show_comment_guest_fields"
   resources :comments
 
-  devise_for :users
+  devise_for :users, :controllers => {:sessions => 'sessions'} do 
+    get "sessions/fancy_new"
+  end
 
   get "pages/home"
 

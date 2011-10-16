@@ -1,0 +1,13 @@
+// $(document).ready(function() {
+// 
+	$("form#user_new").bind('ajax:success', function(evt, data, status, xhr) {
+			$('h1').text('We are in create JS');
+			$.fancybox.close();
+	});
+	
+	// $("form#user_new").bind('ajax:error', function(evt, data, status, xhr) {
+	// 		$('h1').text('form not working');
+	// 		// $.fancybox.close();
+	// });
+// 
+// });

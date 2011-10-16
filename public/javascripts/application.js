@@ -3,8 +3,10 @@
 $(document).ready(function() {
 	
 	/* Using custom settings */
-	$("a.write_as_login_link").fancybox({
+	$("a#write_as_login_link").fancybox({
 		'hideOnContentClick': false
 	});
 	
+	$('a#write_as_login_link').attr('href', '/sessions/fancy_new')
+	// $('div#fancybox-content meta').remove();
 });
