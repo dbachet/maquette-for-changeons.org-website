@@ -1,8 +1,18 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :only => :create
+  after_filter :destroy_guest, :only => :create
+  
+  
   
   def show_comment_guest_fields
-    @js_disabled_msg = "The guest posting is not authorized without javascript."
+    flash[:alert] = "The guest posting is not authorized when javascript is disabled."
+    @comment = Comment.new
+    sign_in_if_guest
+    # current_or_guest_user
+    # guest_user
+    #     sign_in(guest_user)
+    # Comment.set_write_as_guest
+    
     respond_to do |format|
       format.html { render 'errors/javascript_disabled' }
       format.js
@@ -35,6 +45,10 @@ class CommentsController < ApplicationController
   # GET /comments/new.xml
   def new
     @comment = Comment.new
+    
+    # To remove after test
+    # guest_user.destroy
+    # session[:guest_user_id] = nil
 
     respond_to do |format|
       format.html # new.html.erb
@@ -50,8 +64,11 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.xml
   def create
-    @comment = current_user.comments.new(params[:comment])
-
+      @comment = current_user.comments.new(params[:comment])
+      if current_user.role == "guest"
+        @comment.write_as_guest = true
+      end
+    
     respond_to do |format|
       if @comment.save
         format.html { redirect_to(@comment, :notice => 'Comment was successfully created.') }
@@ -88,6 +105,22 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(comments_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  private
+  
+  def sign_in_if_guest
+    if !current_user
+      sign_in(guest_user)
+    end
+  end
+  
+  def destroy_guest
+    if current_user.role == "guest"
+      sign_out(guest_user)
+      guest_user.destroy
+      session[:guest_user_id] = nil
     end
   end
 end

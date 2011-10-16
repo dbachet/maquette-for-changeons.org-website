@@ -38,5 +38,8 @@ module MaquetteCreatePostAsGuestOrUserWithAjax
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # I don't know...
+    # config.action_controller.include_all_helpers = false
   end
 end

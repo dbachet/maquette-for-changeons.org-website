@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013095426) do
+ActiveRecord::Schema.define(:version => 20111016102531) do
 
   create_table "comments", :force => true do |t|
     t.string   "title"
@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(:version => 20111013095426) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "guest_email"
+    t.string   "guest_website"
+    t.boolean  "write_as_guest"
   end
 
   create_table "users", :force => true do |t|
@@ -33,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20111013095426) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

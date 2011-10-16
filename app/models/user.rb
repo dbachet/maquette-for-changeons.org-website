@@ -5,7 +5,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
   
   has_many :comments
+  
+  private
+  # 
+  # def write_as_guest?
+  #   if user_signed_in?
+  #     return false
+  #   else
+  #     return true
+  #   end
+  # end
 end

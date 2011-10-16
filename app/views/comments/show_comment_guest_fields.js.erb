@@ -1,0 +1,4 @@
+$('h1').text('Okay Dédé, ça marche !');
+
+$('form#new_comment div.actions div.drop-menu').hide();
+$('div#wrap_form_new_comment').html("<%= escape_javascript(render :partial => 'comments/new_comment_with_guest_fields') %>");
