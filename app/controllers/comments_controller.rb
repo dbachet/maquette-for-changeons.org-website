@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
   
   
   def show_comment_guest_fields
-    flash[:alert] = "The guest posting is not authorized when javascript is disabled."
     @comment = Comment.new
     
     # current_or_guest_user
@@ -17,7 +16,7 @@ class CommentsController < ApplicationController
     # Comment.set_write_as_guest
     
     respond_to do |format|
-      format.html { render 'errors/javascript_disabled' }
+      format.html { redirect_to error_pages_javascript_disabled_path, :alert => "The guest posting is not authorized when javascript is disabled." }
       format.js
     end
   end

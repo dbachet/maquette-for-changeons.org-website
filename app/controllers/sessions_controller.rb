@@ -3,11 +3,15 @@ class SessionsController < Devise::SessionsController
   
   def create
       resource = warden.authenticate!(:scope => resource_name, :recall => "sessions/failure")
-      # @true = true
+      
+      # SHOULDN'T BE HERE
+      @comment = Comment.new
+      # SHOULDN'T BE HERE
+      
       return sign_in_and_redirect(resource_name, resource)
   end
 
-  def fancy_new
+  def fancy_comment_login
     resource = build_resource
     clean_up_passwords(resource)
     respond_with_navigational(resource, stub_options(resource)){ render :fancy_new, :layout => false }

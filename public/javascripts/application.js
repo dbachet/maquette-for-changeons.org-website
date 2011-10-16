@@ -7,6 +7,6 @@ $(document).ready(function() {
 		'hideOnContentClick': false
 	});
 	
-	$('a#write_as_login_link').attr('href', '/sessions/fancy_new')
+	$('a#write_as_login_link').attr('href', '/sessions/fancy_comment_login')
 	// $('div#fancybox-content meta').remove();
 });

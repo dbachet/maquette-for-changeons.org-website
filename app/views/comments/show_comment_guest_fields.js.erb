@@ -1,4 +1,12 @@
-$('h1').text('Okay Dédé, ça marche !');
+var comment_title = $('input#comment_title').val(),
+	comment_content = $('textarea#comment_content').val(),
+	comment_guest_email = $('input#comment_guest_email').val(),
+	comment_guest_website = $('input#comment_guest_website').val();
 
-$('form#new_comment div.actions div.drop-menu').hide();
 $('div#wrap_form_new_comment').html("<%= escape_javascript(render :partial => 'comments/new_comment_with_guest_fields') %>");
+
+
+$('input#comment_title').val(comment_title);
+$('textarea#comment_content').val(comment_content);
+$('input#comment_guest_email').val(comment_guest_email);
+$('input#comment_guest_website').val(comment_guest_website);

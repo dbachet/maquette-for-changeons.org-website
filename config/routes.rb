@@ -1,11 +1,13 @@
 MaquetteCreatePostAsGuestOrUserWithAjax::Application.routes.draw do
   # match 'comments/show_comment_guest_fields' => 'comments#show_comment_guest_fields'
+  get "error_pages/javascript_disabled"
+  
   post "comments/show_comment_guest_fields"
   get "comments/show_comment_guest_fields"
   resources :comments
 
   devise_for :users, :controllers => {:sessions => 'sessions'} do 
-    get "sessions/fancy_new"
+    get "sessions/fancy_comment_login"
   end
 
   get "pages/home"
