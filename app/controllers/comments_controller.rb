@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  # MUST STAY BEFORE :authenticate_user!
+  before_filter :sign_in_if_guest, :only => :create
+  
   before_filter :authenticate_user!, :only => :create
   after_filter :destroy_guest, :only => :create
   
@@ -7,7 +10,7 @@ class CommentsController < ApplicationController
   def show_comment_guest_fields
     flash[:alert] = "The guest posting is not authorized when javascript is disabled."
     @comment = Comment.new
-    sign_in_if_guest
+    
     # current_or_guest_user
     # guest_user
     #     sign_in(guest_user)
@@ -48,6 +51,7 @@ class CommentsController < ApplicationController
     
     # To remove after test
     # guest_user.destroy
+    # sign_out(guest_user)
     # session[:guest_user_id] = nil
 
     respond_to do |format|
@@ -65,8 +69,15 @@ class CommentsController < ApplicationController
   # POST /comments.xml
   def create
       @comment = current_user.comments.new(params[:comment])
+      
+      puts current_user.role
+      
       if current_user.role == "guest"
         @comment.write_as_guest = true
+      else
+        @comment.guest_email = nil
+        @comment.guest_website = nil
+        @comment.write_as_guest = false
       end
     
     respond_to do |format|
