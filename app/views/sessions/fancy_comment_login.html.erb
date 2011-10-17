@@ -1,5 +1,9 @@
 <h2>Sign in Connard</h2>
 
+<div class="fancy_flash_messages">
+	<%= render "layouts/flash_messages"%>
+</div>
+
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :remote => true) do |f| %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
