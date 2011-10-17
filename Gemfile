@@ -4,6 +4,7 @@ gem 'rails', '3.0.5'
 gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 gem 'devise'
 gem 'jquery-rails', '>= 1.0.12'
+gem 'client_side_validations'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
