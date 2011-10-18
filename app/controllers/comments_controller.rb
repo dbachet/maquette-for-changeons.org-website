@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
   
   def show_comment_guest_fields
     @comment = Comment.new
-    
+    @comment.write_as_guest = true
+    puts "write as guest -> #{@comment.write_as_guest}"
     # current_or_guest_user
     # guest_user
     #     sign_in(guest_user)
